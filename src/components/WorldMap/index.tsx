@@ -2,8 +2,9 @@ import { memo, useState } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import ReactTooltip from 'react-tooltip';
 
-import { GEO_URL } from 'config/constants';
 import Text from 'atoms/Text';
+
+import { GEO_URL } from 'config/constants';
 
 export type WorldMapProps = {
   onRegionClick?: (geoData: any) => void;

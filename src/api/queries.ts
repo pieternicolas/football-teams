@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
-import { Area } from 'types/dataTypes';
+
+import { Area, Competition } from 'types/dataTypes';
 
 export type GetAreasReturnProps = {
   count: number;
@@ -7,3 +8,16 @@ export type GetAreasReturnProps = {
   areas: Area[];
 };
 export const GetAreas: AxiosRequestConfig = { url: '/areas', method: 'GET' };
+
+export type GetCompetitionsReturnProps = {
+  count: number;
+  filters: Record<string, any>;
+  competitions: Competition[];
+};
+export const GetCompetitions = (areaCode: number): AxiosRequestConfig => ({
+  url: '/competitions',
+  params: {
+    areas: areaCode,
+  },
+  method: 'GET',
+});

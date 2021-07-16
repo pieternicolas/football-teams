@@ -53,7 +53,7 @@ export type Team = {
 };
 
 export type Season = {
-  id: string;
+  id: number;
   startDate: string; // date string
   endDate: string; // date string
   currentMatchDay?: number;

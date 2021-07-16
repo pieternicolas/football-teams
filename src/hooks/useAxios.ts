@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import {
   makeUseAxios,
@@ -5,15 +6,16 @@ import {
   RefetchOptions,
   UseAxiosResult,
 } from 'axios-hooks';
-import { useMemo } from 'react';
 
-const axiosInstance = makeUseAxios({
-  axios: axios.create({
-    baseURL: 'https://api.football-data.org/v2',
-    headers: {
-      'X-Auth-Token': process.env.REACT_APP_AUTH_TOKEN,
-    },
-  }),
+export const axiosInstance = axios.create({
+  baseURL: 'https://api.football-data.org/v2',
+  headers: {
+    'X-Auth-Token': process.env.REACT_APP_AUTH_TOKEN,
+  },
+});
+
+const baseUseAxiosHook = makeUseAxios({
+  axios: axiosInstance,
   cache: false,
 });
 
@@ -41,7 +43,7 @@ const useAxios: UseAxiosProps = <
   config?: RefetchOptions,
   dataHandler?: (rawData?: TResponse) => THandledData,
 ) => {
-  const rawResponse = axiosInstance<TResponse, TError>(props, config);
+  const rawResponse = baseUseAxiosHook<TResponse, TError>(props, config);
 
   const result = useMemo(
     () => ({
