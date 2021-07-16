@@ -27,6 +27,10 @@ const App = () => {
             height: 100%;
             width: 100%;
           }
+
+          body {
+            font-family: Arial, Helvetica, sans-serif;
+          }
         `}
       />
 
