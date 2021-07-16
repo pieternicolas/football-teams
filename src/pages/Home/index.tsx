@@ -1,5 +1,10 @@
+/** @jsxImportSource @emotion/react */
 import { useState } from 'react';
 
+import Div from 'atoms/Div';
+import Text from 'atoms/Text';
+
+import List, { ListItem } from 'components/List';
 import WorldMap from 'components/WorldMap';
 
 import useAxios from 'hooks/useAxios';
@@ -7,6 +12,8 @@ import useAxios from 'hooks/useAxios';
 import { useGetTeamsPerRegion } from 'api/hooks';
 import { GetAreas, GetAreasReturnProps } from 'api/queries';
 import { Area } from 'types/dataTypes';
+
+import homeStyles from './styles';
 
 const Home = () => {
   const [selectedArea, setSelectedArea] = useState<Area>();
@@ -22,11 +29,22 @@ const Home = () => {
 
   return (
     <>
-      <WorldMap
-        onRegionClick={(geoData) => {
-          handleRegionClick(geoData.ISO_A3);
-        }}
-      />
+      <Div css={homeStyles.root}>
+        <WorldMap
+          onRegionClick={(geoData) => {
+            handleRegionClick(geoData.ISO_A3);
+          }}
+          css={homeStyles.worldMap}
+        />
+
+        <List css={homeStyles.teamList}>
+          {teamsInRegion?.map((team) => (
+            <ListItem key={`team-item-${team.id}`}>
+              <Text>{team.name}</Text>
+            </ListItem>
+          ))}
+        </List>
+      </Div>
     </>
   );
 };
