@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { css, Global } from '@emotion/react';
 
 import useTypedSwitch from 'hooks/useTypedSwitch';
 
@@ -16,6 +17,19 @@ const App = () => {
 
   return (
     <>
+      <Global
+        styles={css`
+          html,
+          body,
+          #root {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+          }
+        `}
+      />
+
       <RouterSwitch />
     </>
   );

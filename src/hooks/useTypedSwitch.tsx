@@ -12,16 +12,16 @@ export const useTypedSwitch = (
   const Providers = providers;
 
   return () => (
-    <Switch>
-      <Providers>
+    <Providers>
+      <Switch>
         {routes.map(({ path, component: RouteComponent }) => (
           <Route exact strict sensitive path={path} key={`route-${path}`}>
             <RouteComponent />
           </Route>
         ))}
         {Fallback && <Fallback />}
-      </Providers>
-    </Switch>
+      </Switch>
+    </Providers>
   );
 };
 
