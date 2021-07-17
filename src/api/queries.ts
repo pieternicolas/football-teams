@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 
-import { Area, Competition, Season, Team } from 'types/dataTypes';
+import { Area, Competition, Player, Season, Team } from 'types/dataTypes';
 
 export type GetAreasReturnProps = {
   count: number;
@@ -39,5 +39,11 @@ export const GetTeamsInCompetition = (
 export type GetTeamByIdReturnProps = Team & {};
 export const GetTeamById = (teamId: number): AxiosRequestConfig => ({
   url: `/teams/${teamId}`,
+  method: 'GET',
+});
+
+export type GetPlayerByIdReturnProps = Player & {};
+export const GetPlayerById = (playerId: number): AxiosRequestConfig => ({
+  url: `/players/${playerId}`,
   method: 'GET',
 });

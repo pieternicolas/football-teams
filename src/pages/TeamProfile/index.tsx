@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import Div from 'atoms/Div';
 import Image from 'atoms/Image';
@@ -10,10 +10,13 @@ import Link from 'components/Link';
 import List, { ListItem } from 'components/List';
 import Accordion from 'components/Accordion';
 
+import PlayerProfile from 'containers/PlayerProfile';
+
 import useAxios from 'hooks/useAxios';
 import useParams from 'hooks/useParams';
 
 import { GetTeamById, GetTeamByIdReturnProps } from 'api/queries';
+import { Player } from 'types/dataTypes';
 
 import { groupBy } from 'helpers/data';
 
@@ -21,6 +24,8 @@ import teamProfileStyles from './styles';
 
 const TeamProfile = () => {
   const params = useParams('/team/:teamId');
+
+  const [activePlayerId, setActivePlayerId] = useState<Player['id']>();
 
   const [{ data: teamProfileData, loading }] = useAxios<GetTeamByIdReturnProps>(
     GetTeamById(Number(params?.teamId)),
@@ -31,6 +36,10 @@ const TeamProfile = () => {
       groupBy(teamProfileData?.squad ?? [], (player) => player.position),
     );
   }, [teamProfileData?.squad]);
+
+  const handlePlayerClick = (playerId: Player['id']) => {
+    setActivePlayerId(playerId);
+  };
 
   return (
     <>
@@ -60,7 +69,10 @@ const TeamProfile = () => {
                   <Accordion header={squad[0]} key={`position-${squad[0]}`}>
                     <List>
                       {squad[1].map((player) => (
-                        <ListItem key={`player-${player.id}`}>
+                        <ListItem
+                          key={`player-${player.id}`}
+                          onClick={() => handlePlayerClick(player.id)}
+                        >
                           {player.name}
                         </ListItem>
                       ))}
@@ -72,6 +84,11 @@ const TeamProfile = () => {
           </>
         )}
       </Div>
+
+      <PlayerProfile
+        playerId={activePlayerId}
+        onClosePlayerProfile={() => setActivePlayerId(undefined)}
+      />
     </>
   );
 };
