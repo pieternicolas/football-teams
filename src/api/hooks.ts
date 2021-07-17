@@ -2,16 +2,13 @@ import { useEffect, useState } from 'react';
 
 import useAxios, { axiosInstance } from 'hooks/useAxios';
 
-import { Competition, Season, Team } from 'types/dataTypes';
-import { GetCompetitions, GetCompetitionsReturnProps } from './queries';
-
-type GetTeamsInCompetition = {
-  count: number;
-  filters: Record<string, any>;
-  competition: Competition;
-  season: Season;
-  teams: Team[];
-};
+import { Team } from 'types/dataTypes';
+import {
+  GetCompetitions,
+  GetCompetitionsReturnProps,
+  GetTeamsInCompetition,
+  GetTeamsInCompetitionReturnProps,
+} from './queries';
 
 export const useGetTeamsPerRegion = (regionCode: number) => {
   const [teams, setTeams] = useState<Team[]>();
@@ -30,9 +27,9 @@ export const useGetTeamsPerRegion = (regionCode: number) => {
   useEffect(() => {
     if (competitionsData) {
       const fetches = competitionsData?.competitions.map((competition) => {
-        return axiosInstance.request<GetTeamsInCompetition>({
-          url: `/competitions/${competition.id}/teams`,
-        });
+        return axiosInstance.request<GetTeamsInCompetitionReturnProps>(
+          GetTeamsInCompetition(competition.id),
+        );
       });
 
       Promise.allSettled(fetches).then((fetchResults) => {

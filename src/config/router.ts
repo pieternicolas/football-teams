@@ -2,8 +2,9 @@
 import React, { ComponentType } from 'react';
 
 const Home = React.lazy(() => import('pages/Home'));
+const TeamProfile = React.lazy(() => import('pages/TeamProfile'));
 
-const PATHS = ['/'] as const;
+const PATHS = ['/', '/team/:teamId'] as const;
 
 type ExtractRouteParams<T> = string extends T
   ? Record<string, string>
@@ -26,6 +27,10 @@ const mainRoutingList: RoutingProps[] = [
   {
     path: '/',
     component: Home,
+  },
+  {
+    path: '/team/:teamId',
+    component: TeamProfile,
   },
 ];
 
