@@ -37,13 +37,18 @@ const Home = () => {
           css={homeStyles.worldMap}
         />
 
-        <List css={homeStyles.teamList}>
-          {teamsInRegion?.map((team) => (
-            <ListItem key={`team-item-${team.id}`}>
-              <Text>{team.name}</Text>
-            </ListItem>
-          ))}
-        </List>
+        {selectedArea && (
+          <>
+            <Text>Teams in {selectedArea.name}</Text>
+            <List css={homeStyles.teamList}>
+              {teamsInRegion?.map((team) => (
+                <ListItem key={`team-item-${team.id}`}>
+                  <Text>{team.name}</Text>
+                </ListItem>
+              ))}
+            </List>
+          </>
+        )}
       </Div>
     </>
   );

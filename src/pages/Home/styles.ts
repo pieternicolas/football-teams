@@ -5,7 +5,7 @@ const homeStyles: Record<string, Interpolation<Theme>> = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    // height: '100%',
+    height: '100%',
   },
   worldMap: {
     flex: '0 0 auto',
