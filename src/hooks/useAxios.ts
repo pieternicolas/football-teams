@@ -6,6 +6,7 @@ import {
   RefetchOptions,
   UseAxiosResult,
 } from 'axios-hooks';
+import LRU from 'lru-cache';
 
 export const axiosInstance = axios.create({
   baseURL: 'https://api.football-data.org/v2',
@@ -13,10 +14,11 @@ export const axiosInstance = axios.create({
     'X-Auth-Token': process.env.REACT_APP_AUTH_TOKEN,
   },
 });
+const cache = new LRU({ max: 20 });
 
 const baseUseAxiosHook = makeUseAxios({
   axios: axiosInstance,
-  cache: false,
+  cache,
 });
 
 interface UseAxiosProps {

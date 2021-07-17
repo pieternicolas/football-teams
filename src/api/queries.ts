@@ -35,3 +35,9 @@ export const GetTeamsInCompetition = (
   url: `/competitions/${competitionId}/teams`,
   method: 'GET',
 });
+
+export type GetTeamByIdReturnProps = Team & {};
+export const GetTeamById = (teamId: number): AxiosRequestConfig => ({
+  url: `/teams/${teamId}`,
+  method: 'GET',
+});

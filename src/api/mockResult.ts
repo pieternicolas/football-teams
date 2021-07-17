@@ -879,3 +879,39 @@ export const mockCompetitionTeamResult = {
     },
   ],
 };
+
+export const mockTeamProfileResult = {
+  id: 610,
+  area: { id: 2247, name: 'Turkey' },
+  activeCompetitions: [
+    {
+      id: 2001,
+      area: { id: 2077, name: 'Europe' },
+      name: 'UEFA Champions League',
+      code: 'CL',
+      plan: 'TIER_ONE',
+      lastUpdated: '2021-06-26T13:37:26Z',
+    },
+    {
+      id: 2070,
+      area: { id: 2247, name: 'Turkey' },
+      name: 'Süper Lig',
+      code: 'TSL',
+      plan: 'TIER_THREE',
+      lastUpdated: '2021-04-17T00:00:29Z',
+    },
+  ],
+  name: 'Galatasaray SK',
+  shortName: 'Galatasaray',
+  tla: 'GAL',
+  crestUrl: 'https://crests.football-data.org/610.svg',
+  address: 'Türk Telekom Arena Stadyumu, Huzur Mahallesi, Şişli İstanbul 34415',
+  phone: '+90 (212) 3051905',
+  website: 'http://www.galatasaray.org',
+  email: 'info@galatasaray.org',
+  founded: 1905,
+  clubColors: 'Red / Yellow',
+  venue: 'Türk Telekom Arena',
+  squad: [],
+  lastUpdated: '2020-11-19T02:14:16Z',
+};
