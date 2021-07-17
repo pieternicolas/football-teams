@@ -21,6 +21,8 @@ export const useGetTeamsPerRegion = (regionCode: number) => {
   useEffect(() => {
     if (regionCode) {
       fetchCompetitions();
+    } else {
+      setTeams([]);
     }
   }, [regionCode, fetchCompetitions]);
 

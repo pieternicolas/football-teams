@@ -6,6 +6,7 @@ const homeStyles: Record<string, Interpolation<Theme>> = {
     flexDirection: 'column',
     alignItems: 'center',
     height: '100%',
+    gap: '0.5em',
   },
   worldMap: {
     flex: '0 0 auto',

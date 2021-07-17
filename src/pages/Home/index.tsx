@@ -43,18 +43,22 @@ const Home = () => {
         {selectedArea && (
           <>
             <Text>Teams in {selectedArea.name}</Text>
-            <List css={homeStyles.teamList}>
-              {teamsInRegion?.map((team) => (
-                <ListItem
-                  key={`team-item-${team.id}`}
-                  onClick={() =>
-                    historyPush('/team/:teamId', { teamId: String(team.id) })
-                  }
-                >
-                  <Text>{team.name}</Text>
-                </ListItem>
-              ))}
-            </List>
+            {teamsInRegion && teamsInRegion?.length > 0 ? (
+              <List css={homeStyles.teamList}>
+                {teamsInRegion.map((team) => (
+                  <ListItem
+                    key={`team-item-${team.id}`}
+                    onClick={() =>
+                      historyPush('/team/:teamId', { teamId: String(team.id) })
+                    }
+                  >
+                    <Text>{team.name}</Text>
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <Text>No data returned</Text>
+            )}
           </>
         )}
       </Div>
