@@ -6,6 +6,9 @@ const teamProfileStyles: Record<string, Interpolation<Theme>> = {
     maxWidth: '960px',
     margin: '0 auto',
     padding: '1em 0',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1em',
   },
   header: {
     display: 'flex',
